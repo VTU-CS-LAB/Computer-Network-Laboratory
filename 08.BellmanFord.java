@@ -4,8 +4,6 @@
 algorithm.
 */
 
-// Temporary Code
-
 import java.util.Scanner;
 
 class BellmanFord {
@@ -36,8 +34,12 @@ class BellmanFord {
         bellmanFordAlgorithm();
 
         System.out.println("Distance Vector");
-        for (int i = 0; i < n; i++)
-            System.out.print(distanceVector[i] + " ");
+        for (int i = 0; i < n; i++) {
+            if (i == dest - 1) {
+                continue;
+            }
+            System.out.println("Distance from " + (i + 1) + " is " + distanceVector[i]);
+        }
         System.out.println();
     }
 
@@ -57,8 +59,8 @@ class BellmanFord {
     }
 }
 
-// ///////
-// Output:
+////////////
+// Output
 //
 // Enter number of nodes
 // 6
@@ -72,4 +74,8 @@ class BellmanFord {
 // Enter destination vertex
 // 6
 // Distance Vector
-// 3.0 4.0 1.0 3.0 2.0 0.0
+// Distance from 1 is 3.0
+// Distance from 2 is 4.0
+// Distance from 3 is 1.0
+// Distance from 4 is 3.0
+// Distance from 5 is 2.0

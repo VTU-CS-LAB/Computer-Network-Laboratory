@@ -8,7 +8,6 @@ class RSA {
     static SecureRandom secureRandom;
     static int bitLength = 50;
 
-
     static String encrypt(String msg) {
         return new BigInteger(msg).modPow(e, n).toString();
     }
@@ -53,13 +52,13 @@ class RSA {
 }
 
 ////////////
-//    Output
-//    P assigned as: 635469119130037
-//    Q assigned as: 954033057154061
-//    N assigned as: 606258546450627387595401630257
-//    PHI_N assigned as: 606258546450625798093225346160
+// Output
+// P assigned as: 635469119130037
+// Q assigned as: 954033057154061
+// N assigned as: 606258546450627387595401630257
+// PHI_N assigned as: 606258546450625798093225346160
 //
-//    Enter Message
-//    45465
-//    Encrypted Message: 581551797190538649820014908031
-//    Decrypted Message: 45465
+// Enter Message
+// 45465
+// Encrypted Message: 581551797190538649820014908031
+// Decrypted Message: 45465

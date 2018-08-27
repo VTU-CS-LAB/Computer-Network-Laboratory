@@ -1,3 +1,4 @@
+
 /*
 7. Write a program for error detecting code using CRC-CCITT (16- bits).
 */
@@ -70,54 +71,54 @@ class CRC {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    System.out.println("Enter Message");
-                    String message = scanner.next();
-                    String result = generateCodeWord(message, generator);
-                    System.out.println("CodeWord: " + result);
-                    break;
-                case 2:
-                    System.out.println("Enter Code Word");
-                    String codeWord = scanner.next();
-                    if (checkCodeWord(codeWord, generator)) {
-                        System.out.println("Code Word is Valid");
-                    } else {
-                        System.out.println("Code Word is Invalid");
-                    }
-                    break;
-                case 3:
-                    System.exit(0);
+            case 1:
+                System.out.println("Enter Message");
+                String message = scanner.next();
+                String result = generateCodeWord(message, generator);
+                System.out.println("CodeWord: " + result);
+                break;
+            case 2:
+                System.out.println("Enter Code Word");
+                String codeWord = scanner.next();
+                if (checkCodeWord(codeWord, generator)) {
+                    System.out.println("Code Word is Valid");
+                } else {
+                    System.out.println("Code Word is Invalid");
+                }
+                break;
+            case 3:
+                System.exit(0);
             }
         }
     }
 }
 
 ////////////
-//    Output
+// Output
 //
-//    Enter Generator String
-//    1011
-//    
-//    Menu
-//    1. Generate Code Word
-//    2. Check Code Word
-//    3. Exit
-//    1
-//    Enter Message
-//    1001
-//    CodeWord: 1001110
-//    
-//    Menu
-//    1. Generate Code Word
-//    2. Check Code Word
-//    3. Exit
-//    2
-//    Enter Code Word
-//    1001110
-//    Code Word is Valid
-//    
-//    Menu
-//    1. Generate Code Word
-//    2. Check Code Word
-//    3. Exit
-//    3
+// Enter Generator String
+// 1011
+//
+// Menu
+// 1. Generate Code Word
+// 2. Check Code Word
+// 3. Exit
+// 1
+// Enter Message
+// 1001
+// CodeWord: 1001110
+//
+// Menu
+// 1. Generate Code Word
+// 2. Check Code Word
+// 3. Exit
+// 2
+// Enter Code Word
+// 1001110
+// Code Word is Valid
+//
+// Menu
+// 1. Generate Code Word
+// 2. Check Code Word
+// 3. Exit
+// 3
