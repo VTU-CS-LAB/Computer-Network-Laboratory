@@ -6,7 +6,7 @@ class RSA {
 
     static BigInteger p, q, n, phi_n, e, d;
     static SecureRandom secureRandom;
-    static int bitLength = 50;
+    static int bitLength = 64;
 
     static String encrypt(String msg) {
         return new BigInteger(msg).modPow(e, n).toString();
