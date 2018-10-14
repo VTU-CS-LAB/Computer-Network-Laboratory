@@ -13,20 +13,18 @@ class Client {
 
     public static void main(String[] args) {
         try {
-            Socket s = new Socket("127.0.0.1", 1300);
-            Scanner scanner = new Scanner(s.getInputStream());
-            // Replace 'file.txt' with your file name.
-            // If using Java Project/IDE, place that file at root of the project.
-            // If using Command Line, place that file in the source code directory.
-            String output = "file.txt";
-            PrintStream p = new PrintStream(s.getOutputStream());
-            p.println(output);
-            while (scanner.hasNextLine()) {
-                System.out.println(scanner.nextLine());
+            Socket socket = new Socket("127.0.0.1", 1300);
+            Scanner socketScanner = new Scanner(socket.getInputStream());
+            Scanner consoleScanner = new Scanner(System.in);
+            System.out.println("Enter File Name");
+            String fileName = consoleScanner.nextLine();
+            PrintStream printStream = new PrintStream(socket.getOutputStream());
+            printStream.println(fileName);
+            while (socketScanner.hasNextLine()) {
+                System.out.println(socketScanner.nextLine());
             }
         } catch (IOException e) {
-
+            System.out.println(e.getMessage());
         }
     }
-
 }

@@ -15,18 +15,18 @@ class Server {
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(1300);
-            Socket s = serverSocket.accept();
-            Scanner scanner = new Scanner(s.getInputStream());
-            String input = scanner.next();
-            PrintStream p = new PrintStream(s.getOutputStream());
-            File file = new File(input);
+            Socket socket = serverSocket.accept();
+            Scanner socketScanner = new Scanner(socket.getInputStream());
+            String fileName = socketScanner.nextLine().trim();
+            PrintStream printStream = new PrintStream(socket.getOutputStream());
+            File file = new File(fileName);
             if (file.exists()) {
                 Scanner fileScanner = new Scanner(file);
                 while (fileScanner.hasNextLine()) {
-                    p.println(fileScanner.nextLine());
+                    printStream.println(fileScanner.nextLine());
                 }
             } else {
-                p.println("ERROR: FILE DOESN'T EXISTS");
+                printStream.println("ERROR: FILE DOESN'T EXISTS");
             }
             // Keep the server alive for complete transfer of data
             System.in.read();
