@@ -23,6 +23,7 @@ class Client {
             while (socketScanner.hasNextLine()) {
                 System.out.println(socketScanner.nextLine());
             }
+            socket.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

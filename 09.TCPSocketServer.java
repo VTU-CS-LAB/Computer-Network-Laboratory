@@ -30,6 +30,9 @@ class Server {
             }
             // Keep the server alive for complete transfer of data
             System.in.read();
+
+            socket.close();
+            serverSocket.close();
         } catch (IOException e) {
 
         }
