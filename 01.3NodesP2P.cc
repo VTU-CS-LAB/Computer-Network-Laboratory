@@ -18,7 +18,6 @@ NS_LOG_COMPONENT_DEFINE("P2P-LAB1");
 int main(int argc, char *argv[])
 {
     std::string socketType = "ns3::TcpSocketFactory";
-    ;
 
     CommandLine cmd;
     cmd.Parse(argc, argv);
