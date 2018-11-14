@@ -1,3 +1,8 @@
+/*
+1. Implement three nodes point – to – point network with duplex links between them.
+Set the queue size, vary the bandwidth and find the number of packets dropped.
+*/
+
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"
