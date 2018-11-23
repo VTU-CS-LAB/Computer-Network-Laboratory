@@ -1,8 +1,3 @@
-/*
-5. Implement and study the performance of GSM on NS2/NS3 (Using MAC layer) or
-equivalent environment.
-*/
-
 #include "ns3/lte-helper.h"
 #include "ns3/epc-helper.h"
 #include "ns3/core-module.h"
@@ -44,17 +39,25 @@ int main(int argc, char *argv[])
     p2ph.SetDeviceAttribute("Mtu", UintegerValue(1500));
     p2ph.SetChannelAttribute("Delay", TimeValue(Seconds(0.010)));
     NetDeviceContainer internetDevices = p2ph.Install(pgw, remoteHost);
-
+    Ipv4AddressHelper ipv4h;
+    ipv4h.SetBase("1.0.0.0", "255.0.0.0");
+    Ipv4InterfaceContainer internetIpIfaces = ipv4h.Assign(internetDevices);
+    // interface 0 is localhost, 1 is the p2p device
+    Ipv4Address remoteHostAddr = internetIpIfaces.GetAddress(1);
+    Ipv4StaticRoutingHelper ipv4RoutingHelper;
+    Ptr<Ipv4StaticRouting> remoteHostStaticRouting =
+        ipv4RoutingHelper.GetStaticRouting(remoteHost->GetObject<Ipv4>());
+    remoteHostStaticRouting->AddNetworkRouteTo(Ipv4Address("7.0.0.0"), Ipv4Mask("255.0.0.0"), 1);
     NodeContainer ueNodes;
     NodeContainer enbNodes;
     enbNodes.Create(numberOfNodes);
     ueNodes.Create(numberOfNodes);
-
-    MobileApplicationHelper mobileApplicatonHelper(enbNodes, ueNodes, numberOfNodes, remoteHost, internetDevices);
+    // Install Mobility Model
+    MobileApplicationHelper mobileApplicatonHelper(enbNodes, ueNodes, numberOfNodes);
     mobileApplicatonHelper.SetupMobilityModule(distance);
 
     // Install LTE Devices to the nodes
-    mobileApplicatonHelper.SetupDevices(lteHelper, epcHelper);
+    mobileApplicatonHelper.SetupDevices(lteHelper, epcHelper, ipv4RoutingHelper);
     // Install and start applications on UEs and remote host
     uint16_t dlPort = 1234;
     uint16_t ulPort = 2000;
@@ -62,7 +65,7 @@ int main(int argc, char *argv[])
     ApplicationContainer clientApps;
     ApplicationContainer serverApps;
 
-    mobileApplicatonHelper.SetupApplications(serverApps, clientApps, ulPort, dlPort, otherPort, interPacketInterval);
+    mobileApplicatonHelper.SetupApplications(serverApps, clientApps, remoteHost, remoteHostAddr, ulPort, dlPort, otherPort, interPacketInterval);
 
     serverApps.Start(Seconds(0.01));
     clientApps.Start(Seconds(0.01));
