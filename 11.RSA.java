@@ -14,11 +14,12 @@ class RSA {
     static int bitLength = 64;
 
     static String encrypt(String msg) {
-        return new BigInteger(msg).modPow(e, n).toString();
+        return new BigInteger(msg.getBytes()).modPow(e, n).toString();
     }
 
     static String decrypt(String cipher) {
-        return new BigInteger(cipher).modPow(d, n).toString();
+        BigInteger bi = new BigInteger(cipher).modPow(d, n);
+        return new String(bi.toByteArray());
     }
 
     public static void main(String[] args) {
@@ -45,7 +46,7 @@ class RSA {
         System.out.println("PHI_N assigned as: " + phi_n);
 
         System.out.println("\nEnter Message");
-        String msg = scanner.next();
+        String msg = scanner.nextLine();
 
         String encryptedMessage = encrypt(msg);
         System.out.println("Encrypted Message: " + encryptedMessage);
