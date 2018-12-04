@@ -97,8 +97,8 @@ class CRC {
 // Output
 //
 // Enter Generator String
-// 1011
-//
+// 10001000000100001
+
 // Menu
 // 1. Generate Code Word
 // 2. Check Code Word
@@ -106,17 +106,26 @@ class CRC {
 // 1
 // Enter Message
 // 1001
-// CodeWord: 1001110
-//
+// CodeWord: 10011001000100101001
+
 // Menu
 // 1. Generate Code Word
 // 2. Check Code Word
 // 3. Exit
 // 2
 // Enter Code Word
-// 1001110
+// 10001000000100001
 // Code Word is Valid
-//
+
+// Menu
+// 1. Generate Code Word
+// 2. Check Code Word
+// 3. Exit
+// 2
+// Enter Code Word
+// 10001000000100000
+// Code Word is Invalid
+
 // Menu
 // 1. Generate Code Word
 // 2. Check Code Word
